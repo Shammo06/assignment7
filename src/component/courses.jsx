@@ -1,11 +1,8 @@
 import './courses.css'
-const Courses = ({courses}) => {    
-    const {name, description, icon, price, credit} = courses;
-    
-    const addhandler= () =>{
-        
-    }
-    
+// eslint-disable-next-line react/prop-types
+const Courses = ({courses, addinfo}) => {    
+    // eslint-disable-next-line react/prop-types
+    const {name, description, icon, price, credit} = courses;    
     
     return (
     <div className='card'>
@@ -16,7 +13,7 @@ const Courses = ({courses}) => {
             <p>Price : {price}</p>
             <p>Credit: {credit}hr</p>
         </div>            
-        <button onClick={addhandler}>Select</button> 
+        <button onClick={()=> addinfo(name,price,credit)}>Select</button> 
     </div>
         
         

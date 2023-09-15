@@ -11,13 +11,16 @@ function App() {
       .then(data => setCourses(data))
 
   })
+  const addinfo = (name,price,credit) =>{
+    const [courselist, setcourselist]= useState([])    
+  }
   return (
     <>
       <h1 className='title'>Course Registration</h1>
       <div className='container'>
         <div className='course-card'>
         {
-        courses.map(courses=><Courses key={courses.name} courses={courses}></Courses>)
+        courses.map(courses=><Courses key={courses.name} addinfo={addinfo} courses={courses}></Courses>)
         }
         </div>
         <div className='reg-info'>
