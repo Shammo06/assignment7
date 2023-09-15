@@ -5,7 +5,8 @@
     background: #FFF;
     padding-left: 30px;
     padding-right: 30px;
-    margin-top: 20px;
+    margin-right: 10px;
+    margin-bottom: 20px;
 }
 .value{
     display:flex;
@@ -15,7 +16,6 @@
 button{
     width:280px;
     height:40px;
-    background-color:#2F80ED;
     color:white;
     border-radius: 8px;
     border: 1px solid #2F80ED;

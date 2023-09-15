@@ -13,12 +13,26 @@ function App() {
   })
   return (
     <>
-      <h1>Course Registration</h1>
-      <div className='course-card'>
-      {
-      courses.map(courses=><Courses key={courses.name} courses={courses}></Courses>)
-      }
+      <h1 className='title'>Course Registration</h1>
+      <div className='container'>
+        <div className='course-card'>
+        {
+        courses.map(courses=><Courses key={courses.name} courses={courses}></Courses>)
+        }
+        </div>
+        <div className='reg-info'>
+          <h3 className='course-rem'>Credit Hour Remaining 7 hr</h3>
+          <p>
+            <h3>Course Name</h3>
+            <ol>
+              <li></li>
+            </ol>
+          </p>
+          <h6>Total Credit Hour : 13</h6>
+          <h6>Total Price : 48000 USD</h6>
+        </div>
       </div>
+   
     </>
   )
 }
