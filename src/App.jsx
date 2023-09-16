@@ -3,16 +3,37 @@ import Courses from './component/courses'
 import {useEffect} from "react";
 import {useState} from "react";
 
+
+
 function App() {
   const [courses, setCourses]= useState([])
-    useEffect(()=>{
+  const [remain, setRemain] = useState(20);
+  const [count, setCount] = useState(0);
+  const [course, setCourse] = useState([]);
+  const [sum, setSum] = useState(0);
+      useEffect(()=>{
       fetch('course.json')
       .then(res => res.json())
       .then(data => setCourses(data))
 
   })
   const addinfo = (name,price,credit) =>{
-    const [courselist, setcourselist]= useState([])    
+    if ((remain-credit)>-1){
+      setRemain(remain-credit)
+      setCount(count+credit)
+    }
+    else{
+      toast.success('This is a success toast!', {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 3000, 
+      })
+       
+    } 
+
+    setSum(sum+price)
+    const newcourse=[...course,name]
+    setCourse(newcourse)
+
   }
   return (
     <>
@@ -23,17 +44,22 @@ function App() {
         courses.map(courses=><Courses key={courses.name} addinfo={addinfo} courses={courses}></Courses>)
         }
         </div>
+        
         <div className='reg-info'>
-          <h3 className='course-rem'>Credit Hour Remaining 7 hr</h3>
+          <h3 className='course-rem'>Credit Hour Remaining {remain} hr</h3>
+          <hr></hr>
           <p>
-            <h3>Course Name</h3>
+            <h2>Course Name</h2>
             <ol>
-              <li></li>
+              {course.map(course=><li>{course}</li>)}
             </ol>
           </p>
-          <h6>Total Credit Hour : 13</h6>
-          <h6>Total Price : 48000 USD</h6>
+          <hr></hr>
+          <h4>Total Credit Hour : {count}</h4>
+          <hr></hr>
+          <h4>Total Price : {sum} USD</h4>
         </div>
+        
       </div>
    
     </>
