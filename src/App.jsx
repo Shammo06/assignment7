@@ -2,6 +2,8 @@ import './App.css'
 import Courses from './component/courses'
 import {useEffect} from "react";
 import {useState} from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -18,22 +20,32 @@ function App() {
 
   })
   const addinfo = (name,price,credit) =>{
-    if ((remain-credit)>-1){
-      setRemain(remain-credit)
-      setCount(count+credit)
+    if ((remain - credit) > -1 && !course.includes(name)){
+      if ((remain-credit)>-1){
+        setRemain(remain-credit)
+        setCount(count+credit)
+      }  
+        
+      setSum(sum+price)
+      if (!course.includes(name)){
+        const newcourse=[...course,name]
+        setCourse(newcourse)
+      }
     }
     else{
-      toast.success('This is a success toast!', {
-      position: toast.POSITION.TOP_CENTER,
-      autoClose: 3000, 
-      })
-       
-    } 
-
-    setSum(sum+price)
-    const newcourse=[...course,name]
-    setCourse(newcourse)
-
+      if (course.includes(name)){
+        toast.error("Course already added", {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 2000,        
+        })
+      }
+      else{
+        toast.error("Course limit exists", {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 2000,        
+        })
+      }
+    }
   }
   return (
     <>
@@ -51,7 +63,7 @@ function App() {
           <p>
             <h2>Course Name</h2>
             <ol>
-              {course.map(course=><li>{course}</li>)}
+              {course.map(course=><li key={course}>{course}</li>)}
             </ol>
           </p>
           <hr></hr>
@@ -59,11 +71,13 @@ function App() {
           <hr></hr>
           <h4>Total Price : {sum} USD</h4>
         </div>
+        <ToastContainer/>
         
       </div>
    
     </>
   )
 }
+
 
 export default App
