@@ -1,7 +1,6 @@
 import './courses.css'
-// eslint-disable-next-line react/prop-types
+
 const Courses = ({courses, addinfo}) => {    
-    // eslint-disable-next-line react/prop-types
     const {name, description, icon, price, credit} = courses;    
     
     return (
